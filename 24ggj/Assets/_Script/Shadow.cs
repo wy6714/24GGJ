@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Shadow : MonoBehaviour
 {
-    public float moveSpeed = 5f;
+    public float moveSpeed = 8f;
     public float shawdowDelay = 0.5f;
 
     private bool canMoveShadow = true;

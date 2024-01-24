@@ -11,13 +11,13 @@ public class Player : MonoBehaviour
 
     private Rigidbody2D rb;
 
-    public float moveSpeed = 5f;
+    public float moveSpeed = 8f;
 
     public GameObject startLine;
 
     //shadow
     public Vector2 lastPosition;
-    private float shadowDelay = 0.2f;
+    private float shadowDelay = 8f;
     public GameObject shadowObj;
 
     //touch startline: 1)show shadow, 2)timeline start move
