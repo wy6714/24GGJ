@@ -28,7 +28,7 @@ public class Beats : MonoBehaviour
         if (collision.CompareTag("Timeline"))
         {
             stage = 1;
-            Debug.Log(stage);
+            //Debug.Log(stage);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -36,7 +36,7 @@ public class Beats : MonoBehaviour
         if (collision.CompareTag("Timeline"))
         {
             stage = 0;
-            Debug.Log(stage);
+            //Debug.Log(stage);
         }
     }
 

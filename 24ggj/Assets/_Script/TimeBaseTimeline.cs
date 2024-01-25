@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class TimeBaseTimeline : MonoBehaviour
 {
-    public float moveSpeed = 50.0f; // Adjust the speed as needed
+    public float moveSpeed = 50.0f; 
     private float timer = 0.0f;
 
     public bool timeLineMove = false;
 
-    public GameObject shadowObj;
+    //public GameObject shadowObj;
 
     private void OnEnable()
     {
-        shadowObj.SetActive(false);
-        Player.touchStartLine += touchStartLine;
+        //shadowObj.SetActive(false);
+        PlayerKeyUp.touchStartLine += touchStartLine;
     }
 
     private void OnDisable()
     {
-        Player.touchStartLine -= touchStartLine;
+        PlayerKeyUp.touchStartLine -= touchStartLine;
     }
 
     void FixedUpdate()
@@ -31,10 +31,13 @@ public class TimeBaseTimeline : MonoBehaviour
             transform.Translate(Vector2.right * moveSpeed * Time.deltaTime);
 
             timer = 0.0f;
-            Debug.Log(this.transform.position);
+            //Debug.Log(this.transform.position);
         }
 
-        if(this.transform.position.x >= 11f)
+        /*ToDo:
+            put end obj as coords
+        */
+        if (this.transform.position.x >= 11f)
         {
             moveSpeed = 0f;
         }
@@ -43,7 +46,6 @@ public class TimeBaseTimeline : MonoBehaviour
     public void touchStartLine(GameObject startLineObj)
     {
         timeLineMove = true;
-        shadowObj.SetActive(true);
-
+        //shadowObj.SetActive(true);
     }
 }
