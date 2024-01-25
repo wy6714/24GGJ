@@ -13,6 +13,7 @@ public class PlayerKeyUp : MonoBehaviour
 
     //touch startline: 1)show shadow, 2)timeline start move
     public static event Action<GameObject> touchStartLine;//timeline script
+    public static event Action<Transform> RecordShadowMove;//GM
 
     // Start is called before the first frame update
     void Start()
@@ -61,6 +62,7 @@ public class PlayerKeyUp : MonoBehaviour
             if (!Blocked(newPos))
             {
                 transform.position = newPos;
+                RecordShadowMove?.Invoke(this.transform);
             }
             else
             {
@@ -75,6 +77,7 @@ public class PlayerKeyUp : MonoBehaviour
             if (!Blocked(newPos))
             {
                 transform.position = newPos;
+                RecordShadowMove?.Invoke(this.transform);
             }
             else
             {
@@ -89,6 +92,7 @@ public class PlayerKeyUp : MonoBehaviour
             if (!Blocked(newPos))
             {
                 transform.position = newPos;
+                RecordShadowMove?.Invoke(this.transform);
             }
             else
             {
@@ -103,6 +107,7 @@ public class PlayerKeyUp : MonoBehaviour
             if (!Blocked(newPos))
             {
                 transform.position = newPos;
+                RecordShadowMove?.Invoke(this.transform);
             }
             else
             {
