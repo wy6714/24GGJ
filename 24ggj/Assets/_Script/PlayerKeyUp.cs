@@ -15,6 +15,7 @@ public class PlayerKeyUp : MonoBehaviour
     public static event Action<GameObject> touchStartLine;//timeline script
     public static event Action<Vector2> RecordShadowMove;//GM
 
+
     // Start is called before the first frame update
     void Start()
     {

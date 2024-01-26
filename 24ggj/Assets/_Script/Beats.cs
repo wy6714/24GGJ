@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,10 @@ public class Beats : MonoBehaviour
 {
     public Sprite newSprite;
     public int stage = 0;
+    public bool hasget = false;
+
+    public static event Action<GameObject> getBeats;//music manager
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +28,7 @@ public class Beats : MonoBehaviour
         {
 
             GetComponent<SpriteRenderer>().sprite = newSprite;
+            getBeats?.Invoke(gameObject);//play audio
         }
 
         if (collision.CompareTag("Timeline"))

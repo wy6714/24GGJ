@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         if (timeOn)
         {
             timer += Time.deltaTime;
-            if (round >0 && playerCoords.Count > 0 && timer >= ShadowMoveTime && timer < ShadowMoveTime + 2f)//2f for strat new round,
+            if (round >0 && playerCoords.Count > 0 && timer >= ShadowMoveTime && timer < ShadowMoveTime + 1f)//2f for strat new round,
                                                                                                              //passing area
             {
                 shadowObj.transform.position = playerCoords.Dequeue();
@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
     public void touchStartLine(GameObject playerTrans)
     {//player touch startline and round>0
         timeOn = true;//start timer
-        if (round > 0 && playerCoords.Count >0)
+        if (round == 1 && playerCoords.Count >0) //only turn on shadow once
         {
             shadowObj.SetActive(true);
             //ShadowMoveTime = timeStamp.Peek();
