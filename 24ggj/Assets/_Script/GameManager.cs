@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    public float x;
+    public float y;
+
     public GameObject shadowObj;
     public Transform playerTransform;
 
@@ -21,17 +24,17 @@ public class GameManager : MonoBehaviour
     private void OnEnable()
     {
         PlayerKeyUp.RecordShadowMove += recordShadowMove;
-        TimeBaseTimeline.touchEndline += addRound;
+        TimeBaseTimeline.touchEndline += touchEndline;
 
-        PlayerKeyUp.touchStartLine += isShadowOn;
+        PlayerKeyUp.touchStartLine += touchStartLine;
     }
 
     private void OnDisable()
     {
         PlayerKeyUp.RecordShadowMove -= recordShadowMove;
-        TimeBaseTimeline.touchEndline -= addRound;
+        TimeBaseTimeline.touchEndline -= touchEndline;
 
-        PlayerKeyUp.touchStartLine -= isShadowOn;
+        PlayerKeyUp.touchStartLine -= touchStartLine;
 
     }
     void Start()
@@ -48,6 +51,8 @@ public class GameManager : MonoBehaviour
             if (round >0 && playerCoords.Count > 0 && timer >= ShadowMoveTime)
             {
                 shadowObj.transform.position = playerCoords.Dequeue().position;
+                playerCoords.Dequeue();
+                printPlayerCoords();
                 Debug.Log("shadow current pos is:" + shadowObj.transform.position
                     +"move at time:" + ShadowMoveTime);
                 //ShadowMoveTime = timeStamp.Dequeue();
@@ -68,47 +73,46 @@ public class GameManager : MonoBehaviour
 
     public void recordShadowMove(Transform playerTrans)
     {
-        if (timeOn)
+        if (timeOn && round ==0)
         {
             timeStamp.Enqueue(timer);
             playerCoords.Enqueue(playerTrans);
-        }
-        
+            Debug.Log(playerTrans.position);
+        }  
     }
 
-    public void addRound(GameObject timelineObj)
+    public void touchEndline(GameObject timelineObj)
     {//timeline at the end
         round += 1;
-        Debug.Log("current Round:" + round);
+        Debug.Log("round:" + round + "is ready");
         timeOn = false;//stop timer
         timer = 0;//reset timer
 
-        printTimeStamp();
+        playerTransform.position = new Vector2(x, y);
     }
 
     
-    public void isShadowOn(GameObject playerTrans)
+    public void touchStartLine(GameObject playerTrans)
     {//player touch startline and round>0
-        
-        isGoNextStamp = true;
         timeOn = true;//start timer
-        shadowObj.SetActive(true);
-    }
-
-    public void printTimeStamp()
-    {
-        Debug.Log("Queue Contents:");
-        foreach (float time in timeStamp)
+        if (round > 0 && playerCoords.Count >0)
         {
-            Debug.Log(time);
+            shadowObj.SetActive(true);
+            ShadowMoveTime = timeStamp.Peek();
+            isGoNextStamp = true;
         }
-
-        //foreach (Transform pos in playerCoords)
-        //{
-        //    Vector2 newpos = pos.position;
-        //    Debug.Log(newpos);
-        //}
+        
     }
+
+    public void printPlayerCoords()
+    {
+        foreach(Transform trans in playerCoords)
+        {
+            Vector2 pos = trans.position;
+            Debug.Log(pos);
+        }
+    }
+
 
    
 }

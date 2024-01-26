@@ -8723,6 +8723,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9d6afa6ef5f64edcbce12e42a7f8202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  x: -7.5
+  y: -0.5
   shadowObj: {fileID: 2050610176}
   playerTransform: {fileID: 1028207218}
 --- !u!4 &1686755928

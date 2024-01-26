@@ -57,12 +57,14 @@ public class PlayerKeyUp : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.UpArrow))
         {
+            newPos = transform.position;
             newPos.y = newPos.y + moveDis;
 
             if (!Blocked(newPos))
             {
                 transform.position = newPos;
                 RecordShadowMove?.Invoke(this.transform);
+                
             }
             else
             {
@@ -72,12 +74,14 @@ public class PlayerKeyUp : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.DownArrow))
         {
+            newPos = transform.position;
             newPos.y = newPos.y - moveDis;
 
             if (!Blocked(newPos))
             {
                 transform.position = newPos;
                 RecordShadowMove?.Invoke(this.transform);
+                
             }
             else
             {
@@ -87,12 +91,14 @@ public class PlayerKeyUp : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.LeftArrow))
         {
+            newPos = transform.position;
             newPos.x = newPos.x - moveDis;
 
             if (!Blocked(newPos))
             {
                 transform.position = newPos;
                 RecordShadowMove?.Invoke(this.transform);
+                
             }
             else
             {
@@ -102,6 +108,7 @@ public class PlayerKeyUp : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.RightArrow))
         {
+            newPos = transform.position;
             newPos.x = newPos.x + moveDis;
 
             if (!Blocked(newPos))
