@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     private bool timeOn = false;
 
     private Queue<float> timeStamp = new Queue<float>();
-    private Queue<Transform> playerCoords = new Queue<Transform>();
+    private Queue<Vector2> playerCoords = new Queue<Vector2>();
 
     private int round = 0;
 
@@ -48,10 +48,10 @@ public class GameManager : MonoBehaviour
         if (timeOn)
         {
             timer += Time.deltaTime;
-            if (round >0 && playerCoords.Count > 0 && timer >= ShadowMoveTime)
+            if (round >0 && playerCoords.Count > 0 && timer >= ShadowMoveTime && timer < ShadowMoveTime + 2f)//2f for strat new round,
+                                                                                                             //passing area
             {
-                shadowObj.transform.position = playerCoords.Dequeue().position;
-                playerCoords.Dequeue();
+                shadowObj.transform.position = playerCoords.Dequeue();
                 printPlayerCoords();
                 Debug.Log("shadow current pos is:" + shadowObj.transform.position
                     +"move at time:" + ShadowMoveTime);
@@ -71,13 +71,13 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void recordShadowMove(Transform playerTrans)
+    public void recordShadowMove(Vector2 playerTrans)
     {
-        if (timeOn && round ==0)
+        if (timeOn)
         {
             timeStamp.Enqueue(timer);
             playerCoords.Enqueue(playerTrans);
-            Debug.Log(playerTrans.position);
+            Debug.Log(playerTrans);
         }  
     }
 
@@ -98,7 +98,7 @@ public class GameManager : MonoBehaviour
         if (round > 0 && playerCoords.Count >0)
         {
             shadowObj.SetActive(true);
-            ShadowMoveTime = timeStamp.Peek();
+            //ShadowMoveTime = timeStamp.Peek();
             isGoNextStamp = true;
         }
         
@@ -106,9 +106,9 @@ public class GameManager : MonoBehaviour
 
     public void printPlayerCoords()
     {
-        foreach(Transform trans in playerCoords)
+        foreach(Vector2 pos in playerCoords)
         {
-            Vector2 pos = trans.position;
+            Vector2 newPos = pos;
             Debug.Log(pos);
         }
     }
