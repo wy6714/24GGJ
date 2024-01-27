@@ -56,7 +56,8 @@ public class MusicManager : MonoBehaviour
         Beats beatsScript = beatObj.GetComponent<Beats>();
         if (!beatsScript.hasget)//ensure beats audio only play once
         {
-            getBeatsAudio.Play();
+            getBeatsAudio.Play();//player audio
+            //add score
             currentScore = currentScore + beatsScript.score;
             beatsScript.hasget = true;
         }

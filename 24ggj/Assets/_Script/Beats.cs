@@ -10,6 +10,7 @@ public class Beats : MonoBehaviour
     public int stage = 0;
     public bool hasget = false;
     public int score = 1;
+    private GameObject playerObj;
 
     public static event Action<GameObject> getBeats;//music manager
 
@@ -36,7 +37,7 @@ public class Beats : MonoBehaviour
             getBeats?.Invoke(gameObject);//play audio, add score
         }
 
-        if(collision.CompareTag("Shadow") && stage == 1)
+        if (collision.CompareTag("Shadow") && stage == 1)
         {
             GetComponent<SpriteRenderer>().sprite = touchedSprite;
             getBeats?.Invoke(gameObject);//play audio, add score
@@ -46,8 +47,20 @@ public class Beats : MonoBehaviour
         {
             stage = 1;
             //Debug.Log(stage);
+
+            //when timeline went to beats and player on the beats
+            playerObj = GameObject.FindGameObjectWithTag("Player");
+
+            if(Vector2.Distance(transform.position, playerObj.transform.position) == 0)
+            {
+                GetComponent<SpriteRenderer>().sprite = touchedSprite;
+                getBeats.Invoke(gameObject);
+            }
         }
     }
+
+
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Timeline"))
