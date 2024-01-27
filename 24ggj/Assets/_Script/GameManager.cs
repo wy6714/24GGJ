@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -66,6 +68,18 @@ public class GameManager : MonoBehaviour
             ShadowMoveTime = timeStamp.Dequeue();
             Debug.Log("next player moved Time is:" + ShadowMoveTime);
             isGoNextStamp = false;
+        }
+
+        //ESC back start scene
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            SceneManager.LoadScene("start");
+        }
+
+        //R restart the level
+        if (Input.GetKeyUp(KeyCode.R))
+        {
+            SceneManager.LoadScene("level1");
         }
 
         

@@ -99,9 +99,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3dcbe4575d60e40269d4f6a1b6cc860e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newSprite: {fileID: -1361137979, guid: 4bd647edfefe246c4ac0ab8422dd47aa, type: 3}
+  touchedSprite: {fileID: -1361137979, guid: 4bd647edfefe246c4ac0ab8422dd47aa, type: 3}
+  originalSprite: {fileID: 385253615, guid: 4bd647edfefe246c4ac0ab8422dd47aa, type: 3}
   stage: 0
   hasget: 0
+  score: 1
 --- !u!61 &5743004481016819106
 BoxCollider2D:
   m_ObjectHideFlags: 0

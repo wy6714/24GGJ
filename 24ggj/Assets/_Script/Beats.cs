@@ -5,9 +5,11 @@ using UnityEngine;
 
 public class Beats : MonoBehaviour
 {
-    public Sprite newSprite;
+    public Sprite touchedSprite;
+    public Sprite originalSprite;
     public int stage = 0;
     public bool hasget = false;
+    public int score = 1;
 
     public static event Action<GameObject> getBeats;//music manager
 
@@ -20,15 +22,18 @@ public class Beats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+      if(hasget == false)
+        {
+            GetComponent<SpriteRenderer>().sprite = originalSprite;
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && stage == 1)
         {
 
-            GetComponent<SpriteRenderer>().sprite = newSprite;
-            getBeats?.Invoke(gameObject);//play audio
+            GetComponent<SpriteRenderer>().sprite = touchedSprite;
+            getBeats?.Invoke(gameObject);//play audio, add score
         }
 
         if (collision.CompareTag("Timeline"))
