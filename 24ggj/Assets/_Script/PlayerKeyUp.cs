@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class PlayerKeyUp : MonoBehaviour
@@ -10,6 +11,8 @@ public class PlayerKeyUp : MonoBehaviour
     private GameObject[] obstacles;
 
     private Vector2 newPos;
+
+    private bool PortalOn = true;
 
     //touch startline: 1)show shadow, 2)timeline start move
     public static event Action<GameObject> touchStartLine;//timeline script
@@ -76,7 +79,8 @@ public class PlayerKeyUp : MonoBehaviour
             {
                 transform.position = newPos;
                 RecordShadowMove?.Invoke(this.transform.position);
-                
+                PortalOn = true;//turn off portal once it used, turn on once make movement
+
             }
             else
             {
@@ -93,7 +97,7 @@ public class PlayerKeyUp : MonoBehaviour
             {
                 transform.position = newPos;
                 RecordShadowMove?.Invoke(this.transform.position);
-                
+                PortalOn = true;//turn off portal once it used, turn on once make movement
             }
             else
             {
@@ -110,7 +114,7 @@ public class PlayerKeyUp : MonoBehaviour
             {
                 transform.position = newPos;
                 RecordShadowMove?.Invoke(this.transform.position);
-                
+                PortalOn = true; //turn off portal once it used, turn on once make movement
             }
             else
             {
@@ -127,6 +131,7 @@ public class PlayerKeyUp : MonoBehaviour
             {
                 transform.position = newPos;
                 RecordShadowMove?.Invoke(this.transform.position);
+                PortalOn = true;//turn off portal once it used, turn on once make movement
             }
             else
             {
@@ -138,7 +143,12 @@ public class PlayerKeyUp : MonoBehaviour
 
     public void portalTransfer(Vector2 DestPos)
     {
-        transform.position = DestPos;
+        if (PortalOn)
+        {
+            transform.position = DestPos;
+            PortalOn = false;
+        }
+        
     }
 
 }

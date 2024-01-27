@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Portal : MonoBehaviour
 {
-    public Vector2 Destination;
+    public Transform DestinationTrans;
     public static event Action<Vector2> portalTransfer;//player scirpt
     // Start is called before the first frame update
     void Start()
@@ -16,7 +16,7 @@ public class Portal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -24,7 +24,7 @@ public class Portal : MonoBehaviour
 
         if (collision.CompareTag("Player"))
         {
-            portalTransfer?.Invoke(Destination);//player scirpt
+            portalTransfer?.Invoke(DestinationTrans.position);//player scirpt
         }
 
     }

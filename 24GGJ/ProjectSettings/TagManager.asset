@@ -8,6 +8,7 @@ TagManager:
   - StartLine
   - Obstacle
   - beats
+  - Portal
   layers:
   - Default
   - TransparentFX
