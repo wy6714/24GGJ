@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using static Unity.IO.LowLevel.Unsafe.AsyncReadManagerMetrics;
 
 public class MusicManager : MonoBehaviour
@@ -10,21 +11,28 @@ public class MusicManager : MonoBehaviour
     // Start is called before the first frame update
     [SerializeField] private AudioSource getBeatsAudio;
     [SerializeField] private AudioSource bgmAudio;
+    public Image originalGirl;
+    public Image brightenGril;
 
     public int normalPassScore;
     public int currentScore = 0;
     public TMP_Text ScoreText;
     public bool isGetBonus = false;
 
+    public GameObject girlObj;
+
     private void OnEnable()
     {
+        originalGirl.enabled = true;//girl image
+        brightenGril.enabled = false;
+
         Beats.getBeats += getBeats;
         PlayerKeyUp.playBgm += playBgm;
 
         TimeBaseTimeline.touchEndline += restartLevel;
 
         ScoreText.text = "Score: 0/" + normalPassScore.ToString();
-        PlayerKeyUp.getBonus += getBonus;
+        girl.getBonus += getBonus;
 
     }
 
@@ -34,7 +42,7 @@ public class MusicManager : MonoBehaviour
         PlayerKeyUp.playBgm -= playBgm;
 
         TimeBaseTimeline.touchEndline -= restartLevel;
-        PlayerKeyUp.getBonus -= getBonus;
+        girl.getBonus -= getBonus;
     }
     void Start()
     {
@@ -46,6 +54,9 @@ public class MusicManager : MonoBehaviour
     {
         //score text
         ScoreText.text = "Score: " + currentScore.ToString() + "/" + normalPassScore.ToString();
+
+        //bonus condition UI
+        girlImage(isGetBonus);
 
         //check pass condition
         if (currentScore == normalPassScore)
@@ -85,6 +96,10 @@ public class MusicManager : MonoBehaviour
                 Beats beatScirpt = beat.GetComponent<Beats>();
                 beatScirpt.hasget = false;
             }
+
+            //reset bonus
+            isGetBonus = false;
+
         } 
 
 }
@@ -98,9 +113,24 @@ public class MusicManager : MonoBehaviour
     {
         isGetBonus = true;//check which ending
 
-        girlObj.SetActive(false);//in case next round need to have gril back
+        //girlObj.SetActive(false);//in case next round need to have gril back
 
-        //get bonus UI
+    }
+
+    public void girlImage(bool isgetBonus)
+    {
+        if (isgetBonus)
+        {
+            originalGirl.enabled = false;
+            brightenGril.enabled = true;
+            girlObj.SetActive(false);
+        }
+        else
+        {
+            originalGirl.enabled = true;
+            brightenGril.enabled = false;
+            girlObj.SetActive(true);
+        }
     }
 
 }

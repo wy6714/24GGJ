@@ -18,8 +18,7 @@ public class PlayerKeyUp : MonoBehaviour
     public static event Action<GameObject> touchStartLine;//timeline script
     public static event Action<Vector2> RecordShadowMove;//GM
     public static event Action<GameObject> playBgm;
-    public static event Action<GameObject> getBonus;
-
+ 
     private void OnEnable()
     {
         Portal.portalTransfer += portalTransfer;
@@ -52,10 +51,7 @@ public class PlayerKeyUp : MonoBehaviour
             touchStartLine?.Invoke(collision.gameObject);
             playBgm?.Invoke(gameObject);
         }
-        if (collision.CompareTag("Bonus"))
-        {
-            getBonus?.Invoke(collision.gameObject);
-        }
+       
 
     }
 

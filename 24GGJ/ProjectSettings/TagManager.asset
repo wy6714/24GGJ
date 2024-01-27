@@ -10,6 +10,7 @@ TagManager:
   - beats
   - Portal
   - Shadow
+  - Bonus
   layers:
   - Default
   - TransparentFX
