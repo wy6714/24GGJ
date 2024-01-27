@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
         TimeBaseTimeline.touchEndline += touchEndline;
 
         PlayerKeyUp.touchStartLine += touchStartLine;
+        
     }
 
     private void OnDisable()
@@ -37,7 +38,6 @@ public class GameManager : MonoBehaviour
         TimeBaseTimeline.touchEndline -= touchEndline;
 
         PlayerKeyUp.touchStartLine -= touchStartLine;
-
     }
     void Start()
     {
@@ -117,6 +117,7 @@ public class GameManager : MonoBehaviour
         }
         
     }
+
 
     public void printPlayerCoords()
     {

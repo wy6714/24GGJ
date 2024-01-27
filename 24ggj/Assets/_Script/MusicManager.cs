@@ -14,6 +14,7 @@ public class MusicManager : MonoBehaviour
     public int normalPassScore;
     public int currentScore = 0;
     public TMP_Text ScoreText;
+    public bool isGetBonus = false;
 
     private void OnEnable()
     {
@@ -23,6 +24,7 @@ public class MusicManager : MonoBehaviour
         TimeBaseTimeline.touchEndline += restartLevel;
 
         ScoreText.text = "Score: 0/" + normalPassScore.ToString();
+        PlayerKeyUp.getBonus += getBonus;
 
     }
 
@@ -32,6 +34,7 @@ public class MusicManager : MonoBehaviour
         PlayerKeyUp.playBgm -= playBgm;
 
         TimeBaseTimeline.touchEndline -= restartLevel;
+        PlayerKeyUp.getBonus -= getBonus;
     }
     void Start()
     {
@@ -46,8 +49,16 @@ public class MusicManager : MonoBehaviour
 
         //check pass condition
         if (currentScore == normalPassScore)
-        {
-            SceneManager.LoadScene("normalWin");
+        {//check get which ending
+            if (isGetBonus)
+            {
+                SceneManager.LoadScene("bonusWin");
+            }
+            else
+            {
+                SceneManager.LoadScene("normalWin");
+            }
+            
         }
     }
 
@@ -81,6 +92,15 @@ public class MusicManager : MonoBehaviour
     public void playBgm(GameObject playerObj)
     {
         bgmAudio.Play();
+    }
+
+    public void getBonus(GameObject girlObj)
+    {
+        isGetBonus = true;//check which ending
+
+        girlObj.SetActive(false);//in case next round need to have gril back
+
+        //get bonus UI
     }
 
 }
