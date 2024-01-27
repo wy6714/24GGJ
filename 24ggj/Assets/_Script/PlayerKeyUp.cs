@@ -14,7 +14,17 @@ public class PlayerKeyUp : MonoBehaviour
     //touch startline: 1)show shadow, 2)timeline start move
     public static event Action<GameObject> touchStartLine;//timeline script
     public static event Action<Vector2> RecordShadowMove;//GM
+    public static event Action<GameObject> playBgm;
 
+    private void OnEnable()
+    {
+        Portal.portalTransfer += portalTransfer;
+    }
+
+    private void OnDisable()
+    {
+        Portal.portalTransfer -= portalTransfer;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +46,7 @@ public class PlayerKeyUp : MonoBehaviour
         if (collision.CompareTag("StartLine"))
         {
             touchStartLine?.Invoke(collision.gameObject);
+            playBgm?.Invoke(gameObject);
         }
 
     }
@@ -123,6 +134,11 @@ public class PlayerKeyUp : MonoBehaviour
             }
         }
 
+    }
+
+    public void portalTransfer(Vector2 DestPos)
+    {
+        transform.position = DestPos;
     }
 
 }

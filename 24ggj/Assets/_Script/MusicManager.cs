@@ -7,16 +7,19 @@ public class MusicManager : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] private AudioSource getBeatsAudio;
+    [SerializeField] private AudioSource bgmAudio;
     private void OnEnable()
     {
         Beats.getBeats += getBeats;
+        PlayerKeyUp.playBgm += playBgm;
         
     }
 
     private void OnDisable()
     {
         Beats.getBeats -= getBeats;
-        
+        PlayerKeyUp.playBgm -= playBgm;
+
 
     }
     void Start()
@@ -37,6 +40,11 @@ public class MusicManager : MonoBehaviour
             getBeatsAudio.Play();
             beatsScript.hasget = true;
         }
+    }
+
+    public void playBgm(GameObject playerObj)
+    {
+        bgmAudio.Play();
     }
 
 }
