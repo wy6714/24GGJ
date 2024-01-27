@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
         }
 
         //R restart the level
-        if (Input.GetKeyUp(KeyCode.R))
+        if (Input.GetKeyUp(KeyCode.Return))
         {
             SceneManager.LoadScene("level1");
         }

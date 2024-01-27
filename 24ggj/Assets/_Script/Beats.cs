@@ -11,6 +11,7 @@ public class Beats : MonoBehaviour
     public bool hasget = false;
     public int score = 1;
     private GameObject playerObj;
+    public SpriteRenderer beatsVisual;
 
     public static event Action<GameObject> getBeats;//music manager
 
@@ -25,21 +26,23 @@ public class Beats : MonoBehaviour
     {
       if(hasget == false)
         {
-            GetComponent<SpriteRenderer>().sprite = originalSprite;
+            //GetComponent<SpriteRenderer>().sprite = originalSprite;
+            beatsVisual.sprite = originalSprite;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") && stage == 1)
         {
-
-            GetComponent<SpriteRenderer>().sprite = touchedSprite;
+            beatsVisual.sprite = touchedSprite;
+            //GetComponent<SpriteRenderer>().sprite = touchedSprite;
             getBeats?.Invoke(gameObject);//play audio, add score
         }
 
         if (collision.CompareTag("Shadow") && stage == 1)
         {
-            GetComponent<SpriteRenderer>().sprite = touchedSprite;
+            //GetComponent<SpriteRenderer>().sprite = touchedSprite;
+            beatsVisual.sprite = touchedSprite;
             getBeats?.Invoke(gameObject);//play audio, add score
         }
 
@@ -53,7 +56,8 @@ public class Beats : MonoBehaviour
 
             if(Vector2.Distance(transform.position, playerObj.transform.position) == 0)
             {
-                GetComponent<SpriteRenderer>().sprite = touchedSprite;
+                beatsVisual.sprite = touchedSprite;
+                //GetComponent<SpriteRenderer>().sprite = touchedSprite;
                 getBeats.Invoke(gameObject);
             }
         }
