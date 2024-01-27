@@ -3891,7 +3891,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1028207217
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -10542,11 +10542,11 @@ GameObject:
   - component: {fileID: 2050610180}
   m_Layer: 0
   m_Name: shadow
-  m_TagString: Untagged
+  m_TagString: Shadow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &2050610177
 SpriteRenderer:
   m_ObjectHideFlags: 0

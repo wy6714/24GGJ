@@ -36,6 +36,12 @@ public class Beats : MonoBehaviour
             getBeats?.Invoke(gameObject);//play audio, add score
         }
 
+        if(collision.CompareTag("Shadow") && stage == 1)
+        {
+            GetComponent<SpriteRenderer>().sprite = touchedSprite;
+            getBeats?.Invoke(gameObject);//play audio, add score
+        }
+
         if (collision.CompareTag("Timeline"))
         {
             stage = 1;
