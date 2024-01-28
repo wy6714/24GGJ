@@ -113,7 +113,7 @@ public class MusicManager : MonoBehaviour
     {
         isGetBonus = true;//check which ending
 
-        //girlObj.SetActive(false);//in case next round need to have gril back
+        girlObj.SetActive(false);//in case next round need to have gril back
 
     }
 

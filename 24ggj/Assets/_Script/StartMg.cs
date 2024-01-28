@@ -18,5 +18,10 @@ public class StartMg : MonoBehaviour
         {
             SceneManager.LoadScene("level1");
         }
+
+        if (Input.GetKeyUp(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 }
