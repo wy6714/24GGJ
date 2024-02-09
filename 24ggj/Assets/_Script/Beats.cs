@@ -56,7 +56,7 @@ public class Beats : MonoBehaviour
             playerObj = GameObject.FindGameObjectWithTag("Player");
 
             if(Vector2.Distance(transform.position, playerObj.transform.position) == 0
-                || Vector2.Distance(transform.position, shadowObj.transform.position) <= 0.2f)
+                || Vector2.Distance(transform.position, shadowObj.transform.position) == 0)
             {
                 beatsVisual.sprite = touchedSprite;
                 //GetComponent<SpriteRenderer>().sprite = touchedSprite;

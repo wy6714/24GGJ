@@ -16,7 +16,7 @@ public class GameManager : MonoBehaviour
     private float ShadowMoveTime;
 
     private bool isGoNextStamp = false;
-    private bool timeOn = false;
+    public bool timeOn = false;
 
     private Queue<float> timeStamp = new Queue<float>();
     private Queue<Vector2> playerCoords = new Queue<Vector2>();
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
             timer += Time.deltaTime;
             //if (round >0 && playerCoords.Count > 0 && timer >= ShadowMoveTime && timer < ShadowMoveTime + 1f)//2f for strat new round,
                                                                                                              //passing area
-            if (round >0 && playerCoords.Count > 0 && timer >= ShadowMoveTime + 0.01f)
+            if (round >0 && playerCoords.Count > 0 && timer >= ShadowMoveTime + 0.01f && timer < ShadowMoveTime + 0.2f)
             {
                 shadowObj.transform.position = playerCoords.Dequeue();
                 printPlayerCoords();
