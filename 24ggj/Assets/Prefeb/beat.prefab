@@ -112,7 +112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8118364772591631264}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -189,6 +189,7 @@ MonoBehaviour:
   stage: 0
   hasget: 0
   score: 1
+  shadowObj: {fileID: 0}
   beatsVisual: {fileID: 6661613838424935197}
 --- !u!61 &5743004481016819106
 BoxCollider2D:

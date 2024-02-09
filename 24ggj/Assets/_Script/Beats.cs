@@ -11,6 +11,7 @@ public class Beats : MonoBehaviour
     public bool hasget = false;
     public int score = 1;
     private GameObject playerObj;
+    public GameObject shadowObj;
     public SpriteRenderer beatsVisual;
 
     public static event Action<GameObject> getBeats;//music manager
@@ -18,7 +19,7 @@ public class Beats : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+   
     }
 
     // Update is called once per frame
@@ -54,7 +55,8 @@ public class Beats : MonoBehaviour
             //when timeline went to beats and player on the beats
             playerObj = GameObject.FindGameObjectWithTag("Player");
 
-            if(Vector2.Distance(transform.position, playerObj.transform.position) == 0)
+            if(Vector2.Distance(transform.position, playerObj.transform.position) == 0
+                || Vector2.Distance(transform.position, shadowObj.transform.position) <= 0.2f)
             {
                 beatsVisual.sprite = touchedSprite;
                 //GetComponent<SpriteRenderer>().sprite = touchedSprite;
