@@ -50,8 +50,9 @@ public class GameManager : MonoBehaviour
         if (timeOn)
         {
             timer += Time.deltaTime;
-            if (round >0 && playerCoords.Count > 0 && timer >= ShadowMoveTime && timer < ShadowMoveTime + 1f)//2f for strat new round,
+            //if (round >0 && playerCoords.Count > 0 && timer >= ShadowMoveTime && timer < ShadowMoveTime + 1f)//2f for strat new round,
                                                                                                              //passing area
+            if (round >0 && playerCoords.Count > 0 && timer >= ShadowMoveTime + 0.2 && timer < ShadowMoveTime + 0.4f)
             {
                 shadowObj.transform.position = playerCoords.Dequeue();
                 printPlayerCoords();
